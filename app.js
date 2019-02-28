@@ -15,8 +15,10 @@ function initFirebaseAuth() {
 function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
+      status.innerText = "Status: user is signed in";
   } else {
       console.log("User is signed out");
+      status.innerText = "Status: user is signed out";
   }
 }
 
@@ -38,6 +40,7 @@ function createUserWithEmailAndPassword(formData){
     });
 }
 
+let status = document.getElementById("status");
 let emailForm = document.getElementById('email-form');
 
 emailForm.addEventListener("submit", onEmailSubmit);
