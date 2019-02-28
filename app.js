@@ -40,10 +40,16 @@ function createUserWithEmailAndPassword(formData){
     });
 }
 
+function signOut() {
+    firebase.auth().signOut();
+}
+
 let status = document.getElementById("status");
 let emailForm = document.getElementById('email-form');
+let signOutBtn = document.getElementById("sign-out-btn");
 
 emailForm.addEventListener("submit", onEmailSubmit);
+signOutBtn.addEventListener("click", signOut);
 
 M.Tabs.init(document.querySelector('.tabs'));
 
