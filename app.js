@@ -20,6 +20,28 @@ function authStateObserver(user) {
   }
 }
 
+// Triggers when the send new message form is submitted.
+function onEmailSubmit(ev) {
+    ev.preventDefault();
+    let emailAdress = document.getElementById('email-address');
+    let emailPassword = document.getElementById('email-password');
+    let formData = {
+        email: emailAdress.value,
+        password: emailPassword.value
+    };
+    createUserWithEmailAndPassword(formData);
+}
+
+function createUserWithEmailAndPassword(formData){
+    firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).catch((error) => {
+        console.log("An error ocurred while signing in. Error code: " + error.code + error.message);
+    });
+}
+
+let emailForm = document.getElementById('email-form');
+
+emailForm.addEventListener("submit", onEmailSubmit);
+
 M.Tabs.init(document.querySelector('.tabs'));
 
 initFirebase();
