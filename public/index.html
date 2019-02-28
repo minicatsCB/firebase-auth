@@ -9,44 +9,68 @@
 </head>
 
 <body>
-
-    <div class="card">
-        <div class="card-content">
-            <h1>Welcome!</h1>
-        </div>
-        <div class="card-tabs">
-            <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a class="active" href="#email-login">Login with email</a></li>
-                <li class="tab"><a href="#github-login">Login with Github</a></li>
-            </ul>
-        </div>
-        <div class="card-content grey lighten-4">
-            <div id="email-login" class="row">
-                <form id="email-form" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email-address" class="validate" type="email" name="email" required>
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email-password" class="validate" type="password" name="password" required>
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                </form>
-                <button class="btn waves-effect waves-light" type="submit" action="POST" form="email-form">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-            <div id="github-login">Login with Github
-                <a id="github-submit-btn" class="waves-effect waves-light btn-large"><i class="material-icons right">exit_to_app</i>Sign In with Github</a>
-            </div>
-        </div>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4">Welcome!</span>
     </div>
 
-    <a id="sign-out-btn" class="waves-effect waves-light btn-large"><i class="material-icons right">exit_to_app</i>Sign Out</a>
+    <div class="card-content grey lighten-4">
+        <div class="row">
+            <form id="email-login-form" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" type="email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" type="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+            </form>
+            <button id="email-login-btn" class="btn waves-effect waves-light" type="submit" action="POST" form="email-login-form">Login
+                <i class="material-icons right">assignment_ind</i>
+            </button>
+        </div>
+
+        <p>Or continue with Github</p>
+
+        <div class="row">
+            <div class="col">
+                <a id="github-login-btn" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Login with Github</a>
+            </div>
+        </div>
+
+        <p class="card-title activator grey-text text-darken-4">New user? Create account</p>
+    </div>
+
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">New user form<i class="material-icons right">close</i></span>
+      <div class="row">
+          <form id="email-sign-up-form" class="col s12">
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input class="validate" type="email" name="email" required>
+                      <label for="email">Email</label>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input class="validate" type="password" name="password" required>
+                      <label for="password">Password</label>
+                  </div>
+              </div>
+          </form>
+          <button class="btn waves-effect waves-light" type="submit" action="POST" form="email-sign-up-form">Sign up
+              <i class="material-icons right">person_add</i>
+          </button>
+      </div>
+    </div>
+  </div>
+
+    <a id="sign-out-btn" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Sign Out</a>
 
     <p id="status">Status:</p>
 

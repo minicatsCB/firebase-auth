@@ -11,7 +11,6 @@ function initFirebaseAuth() {
     firebase.auth().onAuthStateChanged(authStateObserver);
 }
 
-// Triggers when the auth state change for instance when the user signs-in or signs-out.
 function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
@@ -22,21 +21,33 @@ function authStateObserver(user) {
   }
 }
 
-// Triggers when the send new message form is submitted.
-function onEmailSubmit(ev) {
-    ev.preventDefault();
-    let emailAdress = document.getElementById('email-address');
-    let emailPassword = document.getElementById('email-password');
-    let formData = {
-        email: emailAdress.value,
-        password: emailPassword.value
-    };
-    createUserWithEmailAndPassword(formData);
+function getFormData(form){
+    console.log(form);
+    let formData = {};
+    for(let element of form.elements){
+        if(element.tagName.toLowerCase() === "input") {
+            formData[element.name] = element.value;
+        }
+    }
+
+    return formData;
 }
 
-function createUserWithEmailAndPassword(formData){
+function signUpWithEmail(ev) {
+    ev.preventDefault();
+    let formElement = ev.target;
+    let formData = getFormData(formElement);
     firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).catch((error) => {
-        console.log("An error ocurred while signing in with email. Error code: " + error.code + error.message);
+        console.log("An error ocurred while signing in with email. Error", error);
+    });
+}
+
+function loginWithEmail(ev) {
+    ev.preventDefault();
+    let formElement = ev.target;
+    let formData = getFormData(formElement);
+    firebase.auth().signInWithEmailAndPassword(formData.email, formData.password).catch((error) => {
+        console.log("An error ocurred while login in with email. Error:", error);
     });
 }
 
@@ -53,13 +64,15 @@ function signOut() {
     firebase.auth().signOut();
 }
 
-let status = document.getElementById("status");
-let emailForm = document.getElementById('email-form');
+let emailLoginForm = document.getElementById("email-login-form");
+let emailSignUpForm = document.getElementById('email-sign-up-form');
+let githubLoginBtn = document.getElementById("github-login-btn");
 let signOutBtn = document.getElementById("sign-out-btn");
-let githubSignInBtn = document.getElementById("github-submit-btn");
+let status = document.getElementById("status");
 
-emailForm.addEventListener("submit", onEmailSubmit);
-githubSignInBtn.addEventListener("click", signInWithGithub);
+emailLoginForm.addEventListener("submit", loginWithEmail);
+emailSignUpForm.addEventListener("submit", signUpWithEmail);
+githubLoginBtn.addEventListener("click", signInWithGithub);
 signOutBtn.addEventListener("click", signOut);
 
 M.Tabs.init(document.querySelector('.tabs'));
