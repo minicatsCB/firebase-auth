@@ -20,15 +20,24 @@
             </ul>
         </div>
         <div class="card-content grey lighten-4">
-            <div id="email-login">
-                <div class="input-field">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
-                </div>
+            <div class="row">
+                <form id="email-form" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email-address" class="validate" type="email" name="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email-password" class="validate" type="password" name="password" required>
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn waves-effect waves-light" type="submit" action="POST" form="email-form">Submit
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
             <div id="github-login">Login with Github</div>
         </div>
