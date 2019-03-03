@@ -16,14 +16,14 @@ function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
       signOutBtn.classList.remove("hide");
-      document.getElementById("login-col").classList.add("hide");
-      document.getElementById("user-col").innerHTML = createCurrentUserTemplate(user);
-      document.getElementById("user-col").classList.remove("hide");
+      loginCol.classList.add("hide");
+      userCol.innerHTML = createCurrentUserTemplate(user);
+      userCol.classList.remove("hide");
   } else {
       console.log("User is signed out");
       signOutBtn.classList.add("hide");
-      document.getElementById("user-col").classList.add("hide");
-      document.getElementById("login-col").classList.remove("hide");
+      userCol.classList.add("hide");
+      loginCol.classList.remove("hide");
   }
 }
 
@@ -142,6 +142,9 @@ let emailLoginForm = document.getElementById("email-login-form");
 let emailSignUpForm = document.getElementById('email-sign-up-form');
 let githubLoginBtn = document.getElementById("github-login-btn");
 let signOutBtn = document.getElementById("sign-out-btn");
+
+let loginCol = document.getElementById("login-col");
+let userCol = document.getElementById("user-col");
 
 emailLoginForm.addEventListener("submit", loginWithEmail);
 emailSignUpForm.addEventListener("submit", signUpWithEmail);
