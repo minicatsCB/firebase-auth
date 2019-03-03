@@ -42,7 +42,8 @@ function signUpWithEmail(ev) {
     ev.preventDefault();
     let formElement = ev.target;
     let formData = getFormData(formElement);
-    firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(() => {
+    formData.photoURL = `https://api.adorable.io/avatars/200/${formData.email}.png`;
+    firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).then((result) => {
         console.log("User signed up with email succesfully");
         firebase.database().ref().child("users").push(formData);
     }).catch((error) => {
@@ -65,7 +66,7 @@ function signInWithGithub() {
         console.log("Sign in with Github succesful.", result);
         let userData = {
             email: result.additionalUserInfo.profile.email || "no data available",
-            avatar_url: result.additionalUserInfo.profile.avatar_url
+            photoURL: result.additionalUserInfo.profile.avatar_url
         };
         firebase.database().ref().child("users").push(userData);
     }).catch(function(error) {
@@ -96,7 +97,7 @@ function removeUserFromList(user){
 function createUserItemTemplate(userKey, userData){
     let userItemTemplate = `
         <li id="${userKey}" class="collection-item avatar">
-            <img src="#" alt="avatar" class="circle">
+            <img src="${userData.photoURL}" alt="avatar" class="circle">
             <span class="title">Name</span>
             <p>${userData.email}</p>
         </li>
@@ -114,7 +115,7 @@ function createCurrentUserTemplate(user){
         <div class="card-content">
             <div class="row">
                 <div class="col s12 center-align">
-                    <img src="${user.avatar_url}" alt="avatar" class="circle">
+                    <img src="${user.photoURL}" alt="avatar" class="circle">
                     <p>${user.email}</p>
                 </div>
             </div>
