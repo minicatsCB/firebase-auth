@@ -2,6 +2,7 @@ function initFirebase(){
   var config = {
     apiKey: "yourApiKey",
     authDomain: "yourAuthDomain",
+    databaseURL: "yourDatabaseURL",
     projectId: "yourProjectId",
   };
   firebase.initializeApp(config);
@@ -22,7 +23,6 @@ function authStateObserver(user) {
 }
 
 function getFormData(form){
-    console.log(form);
     let formData = {};
     for(let element of form.elements){
         if(element.tagName.toLowerCase() === "input") {
@@ -37,7 +37,10 @@ function signUpWithEmail(ev) {
     ev.preventDefault();
     let formElement = ev.target;
     let formData = getFormData(formElement);
-    firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).catch((error) => {
+    firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(() => {
+        console.log("User signed up with email succesfully");
+        firebase.database().ref().child("users").push(formData);
+    }).catch((error) => {
         console.log("An error ocurred while signing in with email. Error", error);
     });
 }
@@ -64,6 +67,41 @@ function signOut() {
     firebase.auth().signOut();
 }
 
+function addDatabaseListeners() {
+    firebase.database().ref().child("users").on('child_added', addUserToList);
+}
+
+function addUserToList(user) {
+    let userListElement = document.getElementById("user-list");
+    let userItemTemplate = replaceNullData `${createUserItemTemplate(user.val())}`;
+    userListElement.insertAdjacentHTML('beforeend', userItemTemplate);
+}
+
+function createUserItemTemplate(user){
+    let userItemTemplate = `
+        <li class="collection-item avatar">
+            <img src="#" alt="avatar" class="circle">
+            <span class="title">Name</span>
+            <p>${user.email}</p>
+        </li>
+    `;
+
+    return userItemTemplate;
+}
+
+function replaceNullData(strings, ...parts) {
+    var checkedMarkup = "";
+    parts.forEach((part, index) => {
+        if (!part) {
+            part = "data not available";
+        }
+
+        checkedMarkup += strings[index] + part;
+    });
+
+    return checkedMarkup + strings[strings.length - 1];
+}
+
 let emailLoginForm = document.getElementById("email-login-form");
 let emailSignUpForm = document.getElementById('email-sign-up-form');
 let githubLoginBtn = document.getElementById("github-login-btn");
@@ -79,3 +117,4 @@ M.Tabs.init(document.querySelector('.tabs'));
 
 initFirebase();
 initFirebaseAuth();
+addDatabaseListeners();
