@@ -15,13 +15,11 @@ function initFirebaseAuth() {
 function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
-      status.innerText = "Status: user is signed in";
       document.getElementById("login-col").classList.add("hide");
       document.getElementById("user-col").innerHTML = createCurrentUserTemplate(user);
       document.getElementById("user-col").classList.remove("hide");
   } else {
       console.log("User is signed out");
-      status.innerText = "Status: user is signed out";
       document.getElementById("user-col").classList.add("hide");
       document.getElementById("login-col").classList.remove("hide");
   }
@@ -142,7 +140,6 @@ let emailLoginForm = document.getElementById("email-login-form");
 let emailSignUpForm = document.getElementById('email-sign-up-form');
 let githubLoginBtn = document.getElementById("github-login-btn");
 let signOutBtn = document.getElementById("sign-out-btn");
-let status = document.getElementById("status");
 
 emailLoginForm.addEventListener("submit", loginWithEmail);
 emailSignUpForm.addEventListener("submit", signUpWithEmail);
