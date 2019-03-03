@@ -69,20 +69,26 @@ function signOut() {
 
 function addDatabaseListeners() {
     firebase.database().ref().child("users").on('child_added', addUserToList);
+    firebase.database().ref().child("users").on('child_removed', removeUserFromList);
 }
 
 function addUserToList(user) {
     let userListElement = document.getElementById("user-list");
-    let userItemTemplate = replaceNullData `${createUserItemTemplate(user.val())}`;
+    let userItemTemplate = replaceNullData `${createUserItemTemplate(user.key, user.val())}`;
     userListElement.insertAdjacentHTML('beforeend', userItemTemplate);
 }
 
-function createUserItemTemplate(user){
+function removeUserFromList(user){
+    document.getElementById(user.key).remove();
+    firebase.database().ref().child("users").child(user.key).remove();
+}
+
+function createUserItemTemplate(userKey, userData){
     let userItemTemplate = `
-        <li class="collection-item avatar">
+        <li id="${userKey}" class="collection-item avatar">
             <img src="#" alt="avatar" class="circle">
             <span class="title">Name</span>
-            <p>${user.email}</p>
+            <p>${userData.email}</p>
         </li>
     `;
 
