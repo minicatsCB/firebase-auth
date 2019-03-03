@@ -15,11 +15,13 @@ function initFirebaseAuth() {
 function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
+      signOutBtn.classList.remove("hide");
       document.getElementById("login-col").classList.add("hide");
       document.getElementById("user-col").innerHTML = createCurrentUserTemplate(user);
       document.getElementById("user-col").classList.remove("hide");
   } else {
       console.log("User is signed out");
+      signOutBtn.classList.add("hide");
       document.getElementById("user-col").classList.add("hide");
       document.getElementById("login-col").classList.remove("hide");
   }
