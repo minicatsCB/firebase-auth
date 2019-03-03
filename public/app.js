@@ -58,6 +58,11 @@ function signInWithGithub() {
     var provider = new firebase.auth.GithubAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
         console.log("Sign in with Github succesful.", result);
+        let userData = {
+            email: result.additionalUserInfo.profile.email || "no data available",
+            avatar_url: result.additionalUserInfo.profile.avatar_url
+        };
+        firebase.database().ref().child("users").push(userData);
     }).catch(function(error) {
         console.log("An error ocurred while signing in with Github. Error:", error);
     });
