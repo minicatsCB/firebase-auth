@@ -85,7 +85,7 @@ function addDatabaseListeners() {
 
 function addUserToList(user) {
     let userListElement = document.getElementById("user-list");
-    let userItemTemplate = replaceNullData `${createUserItemTemplate(user.key, user.val())}`;
+    let userItemTemplate = createUserItemTemplate(user.key, user.val());
     userListElement.insertAdjacentHTML('beforeend', userItemTemplate);
 }
 
@@ -95,7 +95,7 @@ function removeUserFromList(user){
 }
 
 function createUserItemTemplate(userKey, userData){
-    let userItemTemplate = `
+    let userItemTemplate = replaceNullData `
         <li id="${userKey}" class="collection-item avatar">
             <img src="${userData.photoURL}" alt="avatar" class="circle">
             <span class="title">Name</span>
