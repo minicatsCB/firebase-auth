@@ -9,66 +9,76 @@
 </head>
 
 <body>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title grey-text text-darken-4">Welcome!</span>
-    </div>
+    <div class="row">
+        <div class="col l6 m12 s12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title grey-text text-darken-4">Welcome!</span>
+              </div>
 
-    <div class="card-content grey lighten-4">
-        <div class="row">
-            <form id="email-login-form" class="col s12">
+              <div class="card-content grey lighten-4">
+                  <div class="row">
+                      <div class="col s12 center-align">
+                          <form id="email-login-form">
+                              <div class="row">
+                                  <div class="input-field col s12">
+                                      <input class="validate" type="email" name="email" required>
+                                      <label for="email">Email</label>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="input-field col s12">
+                                      <input class="validate" type="password" name="password" required>
+                                      <label for="password">Password</label>
+                                  </div>
+                              </div>
+
+                              <button id="email-login-btn" class="btn waves-effect waves-light center-align" type="submit" action="#">Login
+                                  <i class="material-icons right">assignment_ind</i>
+                              </button>
+                          </form>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col s12 center-align">
+                          <p>Or continue with Github</p>
+                          <a id="github-login-btn" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Login with Github</a>
+                      </div>
+                  </div>
+
+                  <p class="card-title activator grey-text text-darken-4 center-align">New user? Create account</p>
+              </div>
+
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">New user form<i class="material-icons right">close</i></span>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input class="validate" type="email" name="email" required>
-                        <label for="email">Email</label>
-                    </div>
+                    <form id="email-sign-up-form" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="validate" type="email" name="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="validate" type="password" name="password" required>
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                    </form>
+                    <button class="btn waves-effect waves-light" type="submit" action="POST" form="email-sign-up-form">Sign up
+                        <i class="material-icons right">person_add</i>
+                    </button>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input class="validate" type="password" name="password" required>
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-
-                <button id="email-login-btn" class="btn waves-effect waves-light" type="submit" action="#">Login
-                    <i class="material-icons right">assignment_ind</i>
-                </button>
-            </form>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <p>Or continue with Github</p>
-                <a id="github-login-btn" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Login with Github</a>
+              </div>
             </div>
         </div>
-
-        <p class="card-title activator grey-text text-darken-4">New user? Create account</p>
+        <div class="col l6 m12 s12">
+            
+        </div>
     </div>
 
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">New user form<i class="material-icons right">close</i></span>
-      <div class="row">
-          <form id="email-sign-up-form" class="col s12">
-              <div class="row">
-                  <div class="input-field col s12">
-                      <input class="validate" type="email" name="email" required>
-                      <label for="email">Email</label>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="input-field col s12">
-                      <input class="validate" type="password" name="password" required>
-                      <label for="password">Password</label>
-                  </div>
-              </div>
-          </form>
-          <button class="btn waves-effect waves-light" type="submit" action="POST" form="email-sign-up-form">Sign up
-              <i class="material-icons right">person_add</i>
-          </button>
-      </div>
-    </div>
-  </div>
 
     <a id="sign-out-btn" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Sign Out</a>
 
