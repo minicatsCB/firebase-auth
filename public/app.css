@@ -1,8 +1,4 @@
-.wrapper {
-    margin-top: 15%;
-}
-
 .card {
     width: 500px;
-    margin: 20% auto;
+    margin: 20% auto 5% auto;
 }
