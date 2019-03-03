@@ -16,9 +16,14 @@ function authStateObserver(user) {
   if (user) {
       console.log("User is signed in");
       status.innerText = "Status: user is signed in";
+      document.getElementById("login-col").classList.add("hide");
+      document.getElementById("user-col").innerHTML = createCurrentUserTemplate(user);
+      document.getElementById("user-col").classList.remove("hide");
   } else {
       console.log("User is signed out");
       status.innerText = "Status: user is signed out";
+      document.getElementById("user-col").classList.add("hide");
+      document.getElementById("login-col").classList.remove("hide");
   }
 }
 
@@ -98,6 +103,25 @@ function createUserItemTemplate(userKey, userData){
     `;
 
     return userItemTemplate;
+}
+
+function createCurrentUserTemplate(user){
+    let currentUserMarkup = replaceNullData `
+        <div class="card-content">
+          <span class="card-title grey-text text-darken-4">Logged in!</span>
+        </div>
+
+        <div class="card-content">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <img src="${user.avatar_url}" alt="avatar" class="circle">
+                    <p>${user.email}</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return currentUserMarkup;
 }
 
 function replaceNullData(strings, ...parts) {
