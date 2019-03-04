@@ -27,3 +27,8 @@
 .user-list-wrapper {
     margin: 0 15% 0 15%;
 }
+
+.user-item-email {
+    font-size: 12px;
+    color: gray;
+}

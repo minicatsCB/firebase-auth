@@ -103,7 +103,7 @@ function createUserItemTemplate(userKey, userData){
     let userItemTemplate = replaceNullData `
         <li id="${userKey}" class="collection-item avatar">
             <img src="${userData.photoURL}" alt="avatar" class="circle">
-            <span class="title">Name</span>
+            <p class="user-item-email">Email<p>
             <p>${userData.email}</p>
         </li>
     `;
