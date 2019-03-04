@@ -107,6 +107,7 @@ function createUserItemTemplate(userKey, userData){
 }
 
 function createCurrentUserTemplate(user){
+    let photoUrl = user.photoURL || `https://api.adorable.io/avatars/200/${user.email}.png`;
     let currentUserMarkup = replaceNullData `
         <div class="card-content">
           <span class="card-title grey-text text-darken-4">Logged in!</span>
@@ -115,7 +116,7 @@ function createCurrentUserTemplate(user){
         <div class="card-content">
             <div class="row">
                 <div class="col s12 center-align">
-                    <img src="${user.photoURL}" alt="avatar" class="circle">
+                    <img src="${photoUrl}" alt="avatar" class="circle">
                     <p>${user.email}</p>
                 </div>
             </div>
