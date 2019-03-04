@@ -1,6 +1,10 @@
+.general-wrapper {
+    margin-top: 200px;
+}
+
 .card {
     width: 500px;
-    margin: 20% auto 5% auto;
+    margin: auto auto 5% auto;
 }
 
 #github-login-btn {
@@ -18,4 +22,8 @@
 .github-logo {
     width: 18px;
     margin: 9px 0 0 15px;
+}
+
+.user-list-wrapper {
+    margin: 0 15% 0 15%;
 }
