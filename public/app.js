@@ -48,6 +48,7 @@ function signUpWithEmail(ev) {
         firebase.database().ref().child("users").push(formData);
     }).catch((error) => {
         console.log("An error ocurred while signing in with email. Error", error);
+        M.toast({html: error.message, displayLength: 5000});
     });
 }
 
@@ -57,6 +58,7 @@ function loginWithEmail(ev) {
     let formData = getFormData(formElement);
     firebase.auth().signInWithEmailAndPassword(formData.email, formData.password).catch((error) => {
         console.log("An error ocurred while login in with email. Error:", error);
+        M.toast({html: error.message, displayLength: 5000});
     });
 }
 
@@ -73,6 +75,7 @@ function signInWithGithub() {
         }
     }).catch(function(error) {
         console.log("An error ocurred while signing in with Github. Error:", error);
+        M.toast({html: error.message, displayLength: 5000});
     });
 }
 
