@@ -3,6 +3,14 @@
     margin: 20% auto 5% auto;
 }
 
+#github-login-btn {
+    background-color: #269f42;
+}
+
+#github-login-btn:hover {
+    background-color: #2bb455;
+}
+
 .github-login {
     color: gray;
 }
